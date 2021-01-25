@@ -223,3 +223,20 @@
 
 </html>
 ```
+
+- 事件函数的调用
+    - 直接绑定函数名称
+    ```html
+        <button @click='Function Name'>点击</button>
+    ```
+    - 调用函数
+    ```html
+        <button @click='Function Name（）'>点击</button>
+    ```
+
+    <img src='./images/6.PNG'>
+    不能直接使用html中的变量名，要使用this
+    
+    ```js
+    this.num++
+    ```
