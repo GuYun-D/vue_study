@@ -181,3 +181,45 @@
 <img src='./images/5.PNG'>
 
 <strong>两行数据绑定的是同一条msg，在输入框中修改msg的值，上面一行的值也发生了变化，控制台中的数据也随之改变</strong>
+
+### 4 事件绑定
+- v-on指令
+```html
+<input type='' v-on:click='num++'>
+```
+- 简写
+```html
+<input type='' @click='num++'>
+```
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" >
+        <div>{{num}}</div>
+        <!-- <button v-on:click='num++'>点击</button> -->
+        <button @click='num++'>点击</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // 元素的挂载位置（值可以是css选择器也可以是dom元素）
+            el: '#app',
+            // 模型数据
+            data: {
+                num: 0
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
