@@ -5,20 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vue hello world</title>
+    <style>
+        [v-clock] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <!-- 插值表达式，支持基本的计算 -->
-    <div id="app">{{msg + '我来了'}}</div>
+    <div  >
+        <div id="app" v-cloak>{{msg + '我来了'}}</div>
+    </div>
     <script src="../js/vue.js"></script>
     <script>
         /**
-         * vue基本使用步骤
-         * 1.需要标签进行填充数据
-         * 2.引入vue.js文件
-         * 3.使用vue语法
-         * 4.把vue提供的数据填充到标签里面
-        */
+         v-clock指令使用
+         1.提供样式
+            [v-cloak]{
+               display: none;
+            }
+         2.在插值表达式所在的标签添加v-cloak指令
+
+         原理：先通过样式隐藏内容，然后在内存中进行替换，替换好之再显示最终结果
+         */
 
         // 创建vue实例
         var vm = new Vue({
