@@ -85,3 +85,57 @@
 - v-pre
 显示原始信息，跳过编译过程（分析编译过程）
 
+##### 数据响应式
+- 如何理解响应式
+① html5中的响应式（屏幕尺寸的变化导致样式的变化）
+② 数据的响应式（数据的变化导致页面内容的变化）
+- 什么是数据绑定
+① 数据绑定：将数据填充到标签中
+- v-once 只编译一次
+① 显示内容之后不再具有响应式功能
+
+
+我们可以通过控制台访问msg
+<img src='./images/1.PNG'>
+这个数据也可以直接修改
+<img src='./images/2.PNG'>
+这就是数据绑定
+
+- 指令v-once
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" >
+        <div v-cloak>{{msg + '我来了'}}</div>
+        <div v-once>{{msg1}}</div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // 元素的挂载位置（值可以是css选择器也可以是dom元素）
+            el: '#app',
+            // 模型数据
+            data: {
+                msg: 'hello vue',
+                msg1: '修改我'
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src='./images/3.PNG'>
+
+添加了v-once的数据就不能再修改了，没有了数据响应式
+使用场合：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果显示的信息后续不再修改，可以使用v-once，这样可以提高性能，如果信息是响应式的，vue就要监控他是否变化了。数据驱动页面的变化，我们不用显式的操作dom
