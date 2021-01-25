@@ -139,3 +139,45 @@
 添加了v-once的数据就不能再修改了，没有了数据响应式
 使用场合：
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果显示的信息后续不再修改，可以使用v-once，这样可以提高性能，如果信息是响应式的，vue就要监控他是否变化了。数据驱动页面的变化，我们不用显式的操作dom
+
+### 3 数据双向绑定
+
+<img src='./images/4.PNG'>
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" >
+        <div v-cloak>{{msg}}</div>
+        <div v-once>
+            <input type="text" v-model='msg' name="" id="">
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // 元素的挂载位置（值可以是css选择器也可以是dom元素）
+            el: '#app',
+            // 模型数据
+            data: {
+                msg: 'hello vue',
+                msg1: '修改我'
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src='./images/5.PNG'>
+
+<strong>两行数据绑定的是同一条msg，在输入框中修改msg的值，上面一行的值也发生了变化，控制台中的数据也随之改变</strong>
