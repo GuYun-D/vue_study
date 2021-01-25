@@ -285,3 +285,10 @@
 
 </html>
 ```
+
+- 事件函数参数传递
+
+    - 普通参数和事件对象
+    ```html
+    <button @click="Function Name（'hi', $event）">点击</button>
+    ```
