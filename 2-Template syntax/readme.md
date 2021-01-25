@@ -236,7 +236,52 @@
 
     <img src='./images/6.PNG'>
     不能直接使用html中的变量名，要使用this
-    
+
     ```js
     this.num++
     ```
+函数需要定义在methods属性中
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" >
+        <div>{{num}}</div>
+        <!-- <button v-on:click='num++'>点击</button> -->
+        <button @click='num++'>点击1</button>
+        <button @click='handle'>点击2</button>
+        <button @click='handle()'>点击3</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // 元素的挂载位置（值可以是css选择器也可以是dom元素）
+            el: '#app',
+            // 模型数据
+            data: {
+                num: 0
+            },
+
+            methods: {
+                handle: function(){
+                    /*
+                        this就是vue的实例，vm
+                    */
+                   console.log(this === vm);
+                   this.num++
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
