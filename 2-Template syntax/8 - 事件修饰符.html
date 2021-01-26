@@ -10,10 +10,11 @@
 <body>
     <div id="app">
         <div>{{num}}</div>
-        <!-- <button v-on:click='num++'>点击</button> -->
-        <button @click='num++'>点击1</button>
-        <button @click='handle1'>点击2</button>
-        <button @click='handle2(123, 456, $event)'>点击3</button>
+        <div v-on:click='handle2'> 
+            <button v-on:click.stop='handle1'>点击</button>
+        </div>
+
+        <a href="http://www.baidu.com" v-on:click.prevent='handle3'>百度</a>
     </div>
     <script src="../js/vue.js"></script>
     <script>
@@ -26,36 +27,15 @@
             },
 
             methods: {
-                handle1: function (event) {
-                    /*
-                        第一种直接调用函数名的形式
-                        事件函数的第一个参数就是事件对象
-                    */
-                    console.log(event);
-                    console.log(event.target.tagName);
+                handle1: function () {
                     this.num++
                 },
 
-                handle2: function (p, p1, event) {
-                    /*
-                        this就是vue的实例，vm
-                    */
-                    //console.log(this === vm);//true
+                handle2: function () {
+                    this.num += 10
+                },
 
-                    /*
-                        可以传入多个参数，参数最后一个是事件对象，名字$event，固定
-                    */
-
-                    console.log(p);
-                    console.log(p1);
-                    // 获取事件对象
-                    console.log(event);
-                    // 获取触发事件的dom元素
-                    console.log(event.target.tagName);
-                    // 获取触发事件的dom元素的内容
-                    console.log(event.target.innerHTML);
-                    this.num++
-                }
+                handle3: function(){}
             }
         })
     </script>

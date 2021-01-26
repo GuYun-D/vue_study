@@ -359,3 +359,60 @@
 </html>
 ```
 
+- 事件修饰符
+    - .stop 阻止冒泡
+    ```html
+    <a v-on:click.stop='handle'></a>
+    ```
+    - .prevent 阻止默认行为
+    ```html
+    <a v-on:click.prevent='handle'></a>
+    ```
+
+    <img src='./images/7.PNG>
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{num}}</div>
+        <div v-on:click='handle2'> 
+            <button v-on:click.stop='handle1'>点击</button>
+        </div>
+
+        <a href="http://www.baidu.com" v-on:click.prevent='handle3'>百度</a>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            // 元素的挂载位置（值可以是css选择器也可以是dom元素）
+            el: '#app',
+            // 模型数据
+            data: {
+                num: 0
+            },
+
+            methods: {
+                handle1: function () {
+                    this.num++
+                },
+
+                handle2: function () {
+                    this.num += 10
+                },
+
+                handle3: function(){}
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
