@@ -524,3 +524,51 @@
 
 </html>
 ```
+
+- v-model的底层实现原理
+    - 第一种
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        <!-- 
+            v-model的底层原理
+            使用输入域中的最新数据覆盖原来的数据
+         -->
+
+        <div id="app">
+            <input type="text" v-bind:value="msg" v-on:input='handle'>
+            <div>{{msg}}</div>
+        </div>
+
+        <script src="../js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: 'hello'
+                },
+                methods: {
+                    handle: function (event) {
+                        this.msg = event.target.value
+                    }
+                }
+            })
+        </script>
+    </body>
+
+    </html>
+    ```
+
+    - 第二种，简写
+    ```html
+        <input type="text" v-bind:value="msg" v-on:input='msg=$event.target.value'>
+    ````
