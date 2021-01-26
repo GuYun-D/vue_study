@@ -468,3 +468,11 @@
 </html>
 
 ```
+
+- 自定义按键修饰符
+    - 全局config.keyCodes对象
+    ```html
+    Vue.config.keyCode.自定义 = 112 // 这个值是按键修饰符的唯一值
+    ```
+
+    弃用
