@@ -369,7 +369,8 @@
     <a v-on:click.prevent='handle'></a>
     ```
 
-    <img src='./images/7.PNG>
+    <img src='./images/7.PNG'>
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
