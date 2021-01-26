@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+        }
+
+        .error{
+            background-color: orange;
+        }
+
+        .test{
+            color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        v-model的底层原理
+        使用输入域中的最新数据覆盖原来的数据
+     -->
+
+    <div id="app">
+        <div v-bind:class="[activeClass, errorClass, {test: isTest}]">测试</div>
+        <button v-on:click='handle'>切换</button>
+
+        <!-- 数组 -->
+        <div v-bind:class="arrrClasses">测试数组简化类</div>
+
+        <!-- 对象 -->
+        <div v-bind:class='objClasses'>测试对象简化类</div>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                activeClass: 'active',
+                errorClass: 'error',
+                isTest: true,
+                arrrClasses: ['active', 'error'],
+                objClasses: {
+                    active: true,
+                    error: true
+                }
+            },
+            methods: {
+                handle: function (event) {
+                    this.isTest = !this.isTest
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
