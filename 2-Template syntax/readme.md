@@ -572,3 +572,111 @@
     ```html
         <input type="text" v-bind:value="msg" v-on:input='msg=$event.target.value'>
     ````
+
+### 6 样式绑定
+- 对象语法
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        v-model的底层原理
+        使用输入域中的最新数据覆盖原来的数据
+     -->
+
+    <div id="app">
+        <div v-bind:class="{active: isActive}"></div>
+        <button v-on:click='handle'>切换</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                isActive: true
+            },
+            methods: {
+                handle: function (event) {
+                    this.isActive = !this.isActive;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+如添加多个类名
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+        }
+
+        .error{
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        v-model的底层原理
+        使用输入域中的最新数据覆盖原来的数据
+     -->
+
+    <div id="app">
+        <div v-bind:class="{active: isActive, error: isError}">测试</div>
+        <button v-on:click='handle'>切换</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                isActive: true,
+                isError: true
+            },
+            methods: {
+                handle: function (event) {
+                    this.isActive = !this.isActive;
+                    this.isError = !this.isError;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+- 数组语法
+```html
+```
