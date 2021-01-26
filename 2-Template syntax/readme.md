@@ -476,3 +476,51 @@
     ```
 
     弃用
+
+
+### 5 属性绑定
+- 动态处理属性
+    - v-bind
+    ````html
+    <a v-bind:href='url'>跳转</a>
+    ```
+    - 缩写形式
+    ````html
+    <a :href='url'>跳转</a>
+    ```
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <a v-bind:href="url">跳转</a>
+        <a :href="url1">跳转</a>
+        <button v-on:click='handle'>切换</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                url: 'http://www.baidu.com',
+                url1: 'https://www.jianshu.com/writer#/notebooks/47973210/notes/79616255'
+            },
+            methods: {
+               handle: function(){
+                   this.url='https://cn.vuejs.org/v2/api/#v-on'
+               }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
