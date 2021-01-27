@@ -1,0 +1,332 @@
+### 静态页面
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab ul {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab ul li {
+            box-sizing: border-box;
+            padding: 0;
+            float: left;
+            width: 100px;
+            height: 45px;
+            line-height: 45px;
+            list-style: none;
+            text-align: center;
+            border-top: 1px solid blue;
+            border-right: 1px solid blue;
+            cursor: pointer;
+        }
+
+        .tab ul li:first-child {
+            border-left: 1px solid blue;
+        }
+
+        .tab ul li.active {
+            background-color: orange;
+        }
+
+        .tab div {
+            width: 500px;
+            height: 300px;
+            display: none;
+            text-align: center;
+            font-size: 30px;
+            line-height: 300px;
+            border: 1px solid blue;
+            border-top: 0px;
+        }
+
+        .tab div.current {
+            display: block;
+        }
+
+        img{
+            width: 500px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <li class="active">龙</li>
+                <li>琴</li>
+                <li>雪</li>
+            </ul>
+            <div class="current">
+                <img src="../image/1.jpg" alt="">
+            </div>
+            <div class="">
+                <img src="../image/2.jpg" alt="">
+            </div>
+            <div class="">
+                <img src="../image/3.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>
+```
+
+### 准备数据
+```html
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            list: [{
+                id: 1,
+                title: '龙',
+                path: '../../image/1.jpg'
+            }, {
+                id: 2,
+                title: '琴',
+                path: '../../image/2.jpg'
+            }, {
+                id: 3,
+                title: '学',
+                path: '../../image/3.jpg'
+            }]
+        },
+        methods: {
+            handle: function () {
+            }
+        }
+    })
+</script>
+```
+
+### 传入数据
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab ul {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab ul li {
+            box-sizing: border-box;
+            padding: 0;
+            float: left;
+            width: 100px;
+            height: 45px;
+            line-height: 45px;
+            list-style: none;
+            text-align: center;
+            border-top: 1px solid blue;
+            border-right: 1px solid blue;
+            cursor: pointer;
+        }
+
+        .tab ul li:first-child {
+            border-left: 1px solid blue;
+        }
+
+        .tab ul li.active {
+            background-color: orange;
+        }
+
+        .tab div {
+            width: 500px;
+            height: 300px;
+            display: none;
+            text-align: center;
+            font-size: 30px;
+            line-height: 300px;
+            border: 1px solid blue;
+            border-top: 0px;
+        }
+
+        .tab div.current {
+            display: block;
+        }
+
+        img {
+            width: 500px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <li :key="item.id" v-for='(item,index) in list'>{{item.title}}</li>
+            </ul>
+            <div v-for="(item, index) in list">
+                <img :src="item.path" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                    id: 1,
+                    title: '龙',
+                    path: '../../image/1.jpg'
+                }, {
+                    id: 2,
+                    title: '琴',
+                    path: '../../image/2.jpg'
+                }, {
+                    id: 3,
+                    title: '学',
+                    path: '../../image/3.jpg'
+                }]
+            },
+            methods: {
+                handle: function () {
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+### 添加类名
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab ul {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab ul li {
+            box-sizing: border-box;
+            padding: 0;
+            float: left;
+            width: 100px;
+            height: 45px;
+            line-height: 45px;
+            list-style: none;
+            text-align: center;
+            border-top: 1px solid blue;
+            border-right: 1px solid blue;
+            cursor: pointer;
+        }
+
+        .tab ul li:first-child {
+            border-left: 1px solid blue;
+        }
+
+        .tab ul li.active {
+            background-color: orange;
+        }
+
+        .tab div {
+            width: 500px;
+            height: 300px;
+            display: none;
+            text-align: center;
+            font-size: 30px;
+            line-height: 300px;
+            border: 1px solid blue;
+            border-top: 0px;
+        }
+
+        .tab div.current {
+            display: block;
+        }
+
+        img {
+            width: 500px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <li v-on:click='change(index)' :class='currentIndex==index?"active":""' :key="item.id" v-for='(item,index) in list'>{{item.title}}</li>
+            </ul>
+            <div :class='currentIndex==index?"current":""' v-for="(item, index) in list">
+                <img :src="item.path" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+                // 选项卡当前索引
+                currentIndex: 0,
+
+                list: [{
+                    id: 1,
+                    title: '龙',
+                    path: '../../image/1.jpg'
+                }, {
+                    id: 2,
+                    title: '琴',
+                    path: '../../image/2.jpg'
+                }, {
+                    id: 3,
+                    title: '学',
+                    path: '../../image/3.jpg'
+                }]
+            },
+            methods: {
+                change: function (index) {
+                    // 实现选项卡切换
+                    // 通过currentIndex操作类名
+                    this.currentIndex = index
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src='./捕获.PNG'>
