@@ -924,3 +924,68 @@
 
 </html>
 ```
+
+- 循环结构
+    - v-for遍历数组
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"   content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+        
+        </style>
+    </head>
+    
+    <body>
+    
+        <div id="app">
+            <h6>水果列表</h6>
+            <ul>
+                <li v-for='item in fruits'>{{item}}</li>
+    
+                <!-- 查看索引 -->
+                <li v-for='(item, index) in fruits'>{   {item + '-------' + index}}</li>
+    
+    
+                <li v-for='item in myFruits'>
+                    <span>{{item.ename}}</span>
+                    -------
+                    <span>{{item.cname}}</span>
+                </li>
+    
+            </ul>
+        </div>
+    
+        <script src="../js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    fruits: ['apple', 'banana',     'orange'],
+                    myFruits: [{
+                        ename: 'apple',
+                        cname: '苹果'
+                    },{
+                        ename: 'orange',
+                        cname: '橘子'
+                    },{
+                        ename: 'banana',
+                        cname: '香蕉'
+                    }]
+                },
+                methods: {
+                    handle: function () {
+                        
+                    }
+                }
+            })
+        </script>
+    </body>
+    
+    </html>
+    ```
+    - key的作用：帮助vue区分不同的元素，从而提高性能
