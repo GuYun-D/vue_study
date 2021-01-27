@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div v-if='v==112' v-for='(v, k, i) in obj'>{{v + '-----' + k + '-----' + i}}</div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                obj: {
+                        uname: 'list',
+                        age: 112,
+                        gener: 'urhrrf'
+                     }
+                },
+                methods: {
+                    handle: function () {
+
+                    }
+                }
+            })
+
+
+        /*
+            原生js遍历对象
+        */
+        // var obj = {
+        //     uname: 'list',
+        //     age: 112,
+        //     gener: 'urhrrf'
+        // }
+
+        // for (var key in obj) {
+        //     console.log(key, obj[key]);
+        // }
+    </script>
+</body>
+
+</html>

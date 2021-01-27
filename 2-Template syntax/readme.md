@@ -990,4 +990,122 @@
     ```
     - key的作用：帮助vue区分不同的元素，从而提高性能
 
-- 
+- 循环结构遍历对象
+    - v-for遍历对象
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"   content="width=device-width, initial-scale=1. 0">
+        <title>Document</title>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+
+        <div id="app">
+            <!-- 
+                v: value
+                k: key
+                i: index
+             -->
+            <div v-for='(v, k, i) in obj'>{{v +     '-----' + k + '-----' + i}}</div>
+        </div>
+
+        <script src="../js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    obj: {
+                            uname: 'list',
+                            age: 112,
+                            gener: 'urhrrf'
+                         }
+                    },
+                    methods: {
+                        handle: function () {
+
+                        }
+                    }
+                })
+
+
+            /*
+                原生js遍历对象
+            */
+            // var obj = {
+            //     uname: 'list',
+            //     age: 112,
+            //     gener: 'urhrrf'
+            // }
+
+            // for (var key in obj) {
+            //     console.log(key, obj[key]);
+            // }
+        </script>
+    </body>
+
+    </html>
+    ```
+    - v-if与v-for结合使用
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"   content="width=device-width, initial-scale=1. 0">
+        <title>Document</title>
+        <style>
+        
+        </style>
+    </head>
+    
+    <body>
+    
+        <div id="app">
+            < v-if='v==112' v-for='(v, k, i) in  obj'>{{v + '-----' + k + '-----' + i}}</ div>
+        </div>
+    
+        <script src="../js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    obj: {
+                            uname: 'list',
+                            age: 112,
+                            gener: 'urhrrf'
+                         }
+                    },
+                    methods: {
+                        handle: function () {
+                        
+                        }
+                    }
+                })
+    
+    
+            /*
+                原生js遍历对象
+            */
+            // var obj = {
+            //     uname: 'list',
+            //     age: 112,
+            //     gener: 'urhrrf'
+            // }
+    
+            // for (var key in obj) {
+            //     console.log(key, obj[key]);
+            // }
+        </script>
+    </body>
+    
+    </html>
+    ```
+    符合条件才遍历，新版本貌似不支持这两条语句作用同一个元素
