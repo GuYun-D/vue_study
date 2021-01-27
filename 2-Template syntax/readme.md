@@ -774,6 +774,50 @@
     
     </html>
     ```
+
+    简写：
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"   content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            
+        </style>
+    </head>
+    
+    <body>
+    
+        <div id="app">
+            <div v-bind:style='objStyles'></div>
+            <button v-on:click='handle'>切换</button>
+        </div>
+    
+        <script src="../js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    objStyles: {
+                        border: '1px solid red',
+                        width:' 200px',
+                        height: '300px'
+                    }
+                },
+                methods: {
+                   handle: function(){
+                       this.objStyles.width = '500px'
+                   }
+                }
+            })
+        </script>
+    </body>
+    
+    </html>
+    ```
     - 数组语法
     ```html
     ```
