@@ -965,7 +965,7 @@
             var vm = new Vue({
                 el: '#app',
                 data: {
-                    fruits: ['apple', 'banana',     'orange'],
+                    fruits: ['apple', 'banana', 'orange'],
                     myFruits: [{
                         ename: 'apple',
                         cname: '苹果'
@@ -989,3 +989,5 @@
     </html>
     ```
     - key的作用：帮助vue区分不同的元素，从而提高性能
+
+- 
