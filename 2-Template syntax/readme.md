@@ -779,23 +779,23 @@
     ```html
     <!DOCTYPE html>
     <html lang="en">
-    
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"   content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <style>
-            
+
         </style>
     </head>
-    
+
     <body>
-    
+
         <div id="app">
             <div v-bind:style='objStyles'></div>
             <button v-on:click='handle'>切换</button>
         </div>
-    
+
         <script src="../js/vue.js"></script>
         <script>
             var vm = new Vue({
@@ -815,9 +815,58 @@
             })
         </script>
     </body>
-    
+
     </html>
     ```
     - 数组语法
     ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"   content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+
+        <div id="app">
+            <div v-bind:style='[objClasses,     overrideStyle]'></div>
+            <button v-on:click='handle'>切换</button>
+        </div>
+
+        <script src="../js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    objStyles: {
+                        border: '1px solid red',
+                        width: ' 200px',
+                        height: '300px'
+                    },
+
+                    overrideStyle: {
+                        backgroundColor: 'pink',
+                        width: ' 200px',
+                        height: '300px',
+                        border: '4px solid green',
+
+                    }
+
+                },
+                methods: {
+                    handle: function () {
+                    }
+                }
+            })
+        </script>
+    </body>
+
+    </html>
     ```
+    后面一样的属性会覆盖前面面，没有的就添加上
