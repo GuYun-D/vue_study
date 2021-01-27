@@ -731,3 +731,49 @@
 
 </html>
 ```
+
+- style样式处理
+    - 对象语法
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"   content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            
+        </style>
+    </head>
+    
+    <body>
+    
+        <div id="app">
+            < v-bind:style='{border: borderStyle,    width: widthStyle, height: heightStyle}'></    div>
+            <button v-on:click='handle'>切换</button>
+        </div>
+    
+        <script src="../js/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    borderStyle: '1px solid red',
+                    widthStyle: '300px',
+                    heightStyle: '300px'
+                },
+                methods: {
+                   handle: function(){
+                       this.heightStyle = '500px'
+                   }
+                }
+            })
+        </script>
+    </body>
+    
+    </html>
+    ```
+    - 数组语法
+    ```html
+    ```
