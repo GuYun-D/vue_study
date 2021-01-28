@@ -218,6 +218,151 @@
 </html>
 ```
 
+2.自定义带参数的指令
+
+<img src='../image/2.PNG'>
+
+```html
+<!-- 初步 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <input type="text" name="" id="" v-color='msg'>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        Vue.directive('color', {
+            bind: function(el, binding){
+                console.log(binding);
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello'
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src='../image/3.PNG'>
+
+```html
+<!-- 若数据是对象 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <input type="text" name="" id="" v-color='msg'>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        Vue.directive('color', {
+            bind: function(el, binding){
+                console.log(binding.value.color);
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: {
+                    color: 'red'
+                }
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src='../image/4.PNG'>
+
+
+设置背景色
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <input type="text" name="" id="" v-color='msg'>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        Vue.directive('color', {
+            bind: function(el, binding){
+                // 根据参数设置背景色
+                el.style.backgroundColor = binding.value.color
+            }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: {
+                    color: 'red'
+                }
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
 
 #### 计算属性
 
