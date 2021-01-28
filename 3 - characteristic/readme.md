@@ -471,6 +471,64 @@
 </html>
 ```
 
+<strong>计算属性与方法的区别
+</strong>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>计算属性</h1>
+       <div>{{reverseString}}</div>
+       <div>{{reverseString}}</div>
+
+       <h1>方法·</h1>
+       <div>{{reversestring()}}</div>
+       <div>{{reversestring()}}</div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello'
+            },
+            methods: {
+                reversestring: function () {
+                    console.log('method的方法');
+                    return this.msg.split('').reverse().join('')
+
+                }
+            },
+            computed: {
+                reverseString: function(){
+                    console.log('computed');
+                    return this.msg.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+<img src='../image/6.PNG'>
+
+思考：缓存的优缺点
 
 #### 过滤器
 
