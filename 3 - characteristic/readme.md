@@ -115,6 +115,58 @@
 </html>
 ```
 
+<strong>2.表单域修饰符</strong> 
+- number: 转化为数值
+- trim：去掉开始和结尾的空格
+- lazy：将input事件装换成change事件(失去焦点时触发)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="text" v-model.number='age'>
+        <button @click='handle'>点击</button>
+
+        <input type="text" v-model.trim='info'>
+        <input type="text" v-model.lazy='msg'>
+        <div>{{msg}}</div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                age: '',
+                info: '',
+                msg: ''
+
+            },
+            methods: {
+                handle: function () {
+                    console.log(this.age + 13);
+                    console.log(this.info);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
 #### 自定义指令
 
 #### 计算属性
