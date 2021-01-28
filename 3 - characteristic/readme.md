@@ -423,6 +423,55 @@
 
 #### 计算属性
 
+<img src='../image/5.PNG'>
+
+基于data中的数据进行操作的，简化模板中的计算
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <div>{{reverseString}}</div>
+
+       <!-- 原生js反转字母 -->
+       <div>{{msg.split('').reverse().join('')}}</div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello'
+            },
+            methods: {
+
+            },
+            computed: {
+                reverseString: function(){
+                    return this.msg.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+
 #### 过滤器
 
 #### 侦听器
