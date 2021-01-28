@@ -318,6 +318,7 @@
 
 
 设置背景色
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -356,6 +357,62 @@
             },
             methods: {
 
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+3.局部指令
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <input type="text" name="" id="" v-color='msg'>
+        <input type="text" name="" id="" v-focus>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: {
+                    color: 'blue'
+                }
+            },
+            methods: {
+
+            },
+            directives: {
+                // 一个或者多个局部指令
+                color: {
+                    bind: function (el, binding) {
+                        // 根据参数设置背景色
+                        el.style.backgroundColor = binding.value.color
+                    }
+                },
+
+                focus: {
+                    inserted: function(el){
+                        el.focus()
+                    }
+                }
             }
         })
     </script>
