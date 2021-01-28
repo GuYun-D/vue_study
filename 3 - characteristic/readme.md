@@ -532,6 +532,69 @@
 
 #### 过滤器
 
+1.简单过滤器
+
+<img src='../image/8.PNG'>
+<img src='../image/9.PNG'>
+
+使用过滤器
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 场景1：插值表达式 -->
+       <input type="text" v-model='msg'>
+       <div>{{msg | upper}}</div>
+       <div>{{msg | lower}}</div>
+
+       <!-- 场景二：属性绑定 -->
+       <div :abc="msg | upper">测试</div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        /*
+            过滤器
+        */
+       // 首字母大写
+       Vue.filter('upper', function (val) {
+           return val.charAt(0).toUpperCase() + val.slice(1)
+       })
+
+       Vue.filter('lower', function (val) {
+           return val.charAt(0).toLowerCase() + val.slice(1)
+       })
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: ''
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
 #### 侦听器
 
 <img src='../image/7.PNG'>
