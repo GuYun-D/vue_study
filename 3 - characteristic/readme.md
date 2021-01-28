@@ -534,5 +534,137 @@
 
 #### 侦听器
 
+<img src='../image/7.PNG'>
+
+```html
+<!-- 初步 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <span>名：</span>
+            <span>
+                <input type="text" v-model='firstn'>
+            </span>
+        </div>
+        <div>
+            <span>姓：</span>
+            <span>
+                <input type="text" v-model='lastn'>
+            </span>
+        </div>
+        <div>{{name}}</div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                firstn: 'Jim',
+                lastn: 'Green',
+                name: 'Jim Green'
+            },
+            methods: {
+
+            },
+
+            watch: {
+                firstn: function (val) {
+                    this.name = val + '' + this.lastn
+                },
+
+                lastn: function (val) {
+                    this.name = this.firstn + '' + val
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+计算属性模拟侦听器
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>
+            <span>名：</span>
+            <span>
+                <input type="text" v-model='firstn'>
+            </span>
+        </div>
+        <div>
+            <span>姓：</span>
+            <span>
+                <input type="text" v-model='lastn'>
+            </span>
+        </div>
+        <div>{{name}}</div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                firstn: 'Jim',
+                lastn: 'Green',
+                // name: 'Jim Green'
+            },
+            methods: {
+
+            },
+
+            // 使用计算属性模拟侦听器要注释掉name
+            computed: {
+                name: function () {
+                    return this.firstn + "" + this.lastn
+                }
+            },
+
+            watch: {
+                // firstn: function (val) {
+                //     this.name = val + '' + this.lastn
+                // },
+
+                // lastn: function (val) {
+                //     this.name = this.firstn + '' + val
+                // },
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
 #### 生命周期
 
