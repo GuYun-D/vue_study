@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <div>
+           <span>用户名：</span>
+           <span>
+               <input type="text" name="" id="" v-model.lazy='uname'>
+           </span>
+           <span>{{tip}}</span>
+       </div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        /*
+            使用侦听器侦听用户名的变化
+            调用后台接口验证
+        */
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                uname: '',
+                tip: ''
+            },
+            methods: {
+                checkName: function (uname) {
+                    // 调用接口，使用定时器模拟接口调用
+
+                    // 保留外部的this，定时器的this指向window
+                    var that = this;
+                    setTimeout(function () {
+                        if(uname == 'admin'){
+                            that.tip = '用户名已存在，请重新输入'
+                        }else{
+                            that.tip = '用户名可用'
+                        }
+                    }, 2000)
+                }
+            },
+            watch: {
+                uname: function (val) {
+                    // 调用后台接口验证
+                    this.checkName(val)
+
+                    this.tip = '正在验证......'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
