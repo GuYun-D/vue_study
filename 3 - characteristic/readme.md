@@ -932,5 +932,80 @@
 
 <img src='../image/13.PNG'>
 
-
 两者均是对数据进行了响应式操作
+
+
+- 通过数组索引的方法修改数据，该数据不是响应式的
+
+```js
+vm.list[1] = 'lemon'
+```
+
+<img src='../image/14.PNG'>
+
+<img src='../image/15.PNG'>
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <div><span><input type="text" v-model='fruName'></span></div>
+       <button v-on:click='handle'></button>
+       <ul>
+           <li :key='index' v-for='(item, index) in list'>{{item}}</li>
+       </ul>
+
+       <div>
+           <div>{{info.name}}</div>
+           <div>{{info.age}}</div>
+           <div>{{info.gender}}</div>
+       </div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: ['apple', 'orange', 'banana'],
+                fruName: '',
+                info: {
+                    name: '张三',
+                    age: 24
+                }
+            },
+            methods: {
+                handle: function () {
+                    this.list.push(this.fruName)
+                }
+            }
+        })
+
+        // vm.list[1] = 'lemon'
+
+        // 第一种方法
+        Vue.set(vm.list, 1, 'lemon')
+
+        // 第二种
+        vm.$set(vm.list, 1, 'lemon')
+
+        // 处理对象
+        vm.$set(vm.info, 'gender', 'male')
+    </script>
+</body>
+
+</html>
+```
