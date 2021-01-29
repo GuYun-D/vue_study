@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <div><span><input type="text" v-model='fruName'></span></div>
+       <button v-on:click='handle'></button>
+       <ul>
+           <li :key='index' v-for='(item, index) in list'>{{item}}</li>
+       </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: ['apple', 'orange', 'banana'],
+                fruName: ''
+            },
+            methods: {
+                handle: function () {
+                    this.list.push(this.fruName)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
