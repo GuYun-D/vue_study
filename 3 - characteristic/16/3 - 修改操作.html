@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .grid {
+            margin: auto;
+            width: 530px;
+            text-align: center;
+        }
+
+        .grid table {
+            border-top: 1px solid #C2D89A;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .grid th,
+        td {
+            padding: 10;
+            border: 1px dashed #F3DCAB;
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .grid th {
+            background-color: #F3DCAB;
+        }
+
+        .grid .book {
+            padding-bottom: 10px;
+            padding-top: 5px;
+            background-color: #F3DCAB;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        实现原理：
+            点击按钮触发事件，创建一个空对象book，直接为对象添加属性，根据数组books进行添加属性，然后将该属性添加到数组中去
+     -->
+
+    <div id="app">
+        <div class="grid">
+            <div>
+                <h1>图书管理</h1>
+                <div class="book">
+                    <div>
+                        <label for="id">
+                            编号：
+                        </label>
+                        <!-- 因为修改是基于id，再修改时不能修改id，使用动态属性控制输入框的状态 使用flag-->
+                        <input type="text" id="id" v-model='id' v-bind:disabled="flag">
+                        <label for="name">
+                            名称：
+                        </label>
+                        <input type="text" id="name" v-model='name'>
+                        <button @click='handle'>提交</button>
+                    </div>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr :key='item.id' v-for='item in books'>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>
+                            <a href="" @click.prevent='toEidt(item.id)'>修改</a>
+                            <span>|</span>
+                            <a href="" @click.prevent>删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <script type="text/javascript">
+        /*
+          图书管理-添加图书
+        */
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                flag: false,
+                books: [{
+                    id: 1,
+                    name: '三国演义',
+                    date: ''
+                }, {
+                    id: 2,
+                    name: '水浒传',
+                    date: ''
+                }, {
+                    id: 3,
+                    name: '红楼梦',
+                    date: ''
+                }, {
+                    id: 4,
+                    name: '西游记',
+                    date: ''
+                }]
+            },
+            methods: {
+                handle: function () {
+
+                    // 方法重用，因为案例中添加和修改使用的是同一个函数，利用flag的状态判断是添加还是修改操作
+
+                    if (this.flag) {
+                        // 修改操作
+                        console.log('修改操作');
+                        // 根据id修改数组中的数据
+                        // 使用some方法进行数组迭代
+                        // 使用箭头函数,普通函数的this指向了window
+                        this.books.some((item) => {
+                            if (item.id == this.id) {
+                                item.name = this.name
+                                // 此迭代函数终止需要返回true
+                                return true
+                            }
+
+
+                        })
+
+                        this.flag = false
+                    } else {
+                        // 添加图书
+                        var book = {};
+                        book.id = this.id;
+                        book.name = this.name;
+                        book.date = '';
+                        this.books.push(book);
+                        // 清空表单
+                        // this.id = '';
+                        // this.name = '';
+                    }
+
+                    // 不论修改还是添加，都要置空表单
+                    this.id = '';
+                    this.name = '';
+
+                },
+
+                // 修改操作
+                /*
+                    实现原理：因为每一条数据都有对应的id，再进操作时，将此条数据的id传入参数，这样就可以精准定位到操作那条数据了
+                             根据id查询数组，将对应数据放到输入框中
+                */
+                toEidt: function (id) {
+                    // 禁止修改id
+                    this.flag = true
+
+                    // 使用数组filter过滤数据，过滤出要修改的数据
+                    var result = this.books.filter(function (item) {
+                        return item.id == id
+                    })
+
+                    // console.log(result);结果如下
+
+                    /*
+                        [{…}]
+                            0:
+                                date: ""
+                                id: 1
+                                name: "三国演义"
+                                __ob__: Observer {value: {…}, dep: Dep, vmCount: 0}
+                                get date: ƒ reactiveGetter()
+                                set date: ƒ reactiveSetter(newVal)
+                                get id: ƒ reactiveGetter()
+                                set id: ƒ reactiveSetter(newVal)
+                                get name: ƒ reactiveGetter()
+                                set name: ƒ reactiveSetter(newVal)
+                                __proto__: Object
+                            length: 1
+                            __proto__: Array(0)
+                    */
+
+
+                    // 将数据填充到表单
+                    this.id = result[0].id
+                    this.name = result[0].name
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
