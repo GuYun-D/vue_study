@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <div>{{pmsg}}</div>
+       <menu-item :title="ptitle" content='多个值'></menu-item>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // 创建子组件
+        Vue.component('menu-item', {
+
+            // 子组件通过props接受数据
+            props: ['title', 'content'],
+            
+            data: function () {
+                return {
+                    msg: '子组件原本的数据'
+                }
+            },
+
+            template: '<div>{{msg + "------" + title + "-------" + content }}</div>'
+        })
+
+
+        // vue实例就是根组件
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件的数据',
+
+                // 在父组件中定义ptitle
+                // 动态传递
+                ptitle: '动态传递'
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

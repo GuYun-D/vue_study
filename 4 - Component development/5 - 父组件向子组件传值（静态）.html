@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+       <div>{{pmsg}}</div>
+       <menu-item title="来自父组件的数据"></menu-item>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // 创建子组件
+        Vue.component('menu-item', {
+
+            // 子组件通过props接受数据
+            props: ['title'],
+            
+            data: function () {
+                return {
+                    msg: '子组件原本的数据'
+                }
+            },
+
+            template: '<div>{{msg + "------" + title}}</div>'
+        })
+
+
+        // vue实例就是根组件
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: '父组件的数据'
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
