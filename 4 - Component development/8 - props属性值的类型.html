@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- 
+        字符串
+        数值
+        布尔值
+        数组
+        对象
+     -->
+    <div id="app">
+        <div>{{pmsg}}</div>
+        <!-- 
+            对于数之和布尔值而言，加上冒号：:pnum='12/boolean'，引号中就是对应的值的类型，若去掉引号就是字符串类型
+         -->
+        <menu-item :pstr='pstr' :pnum='12' :pboo='true' :parr='parr' :pobj='pobj'></menu-item>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        Vue.component('menu-item', {
+            props: ['pstr', 'pnum', 'pboo', 'parr', 'pobj'],
+            template: `
+                <div>
+                    <div>{{pstr}}</div>
+                    <div>{{pnum + 10}}</div>
+                    <div>{{pboo}}</div>
+                    <div>
+                        <ul>
+                            <li :key='index' v-for='(item, index) in parr'>{{item}}</li>    
+                        </ul>    
+                    </div>
+                    <div>
+                        <span>{{pobj.name}}</span>    
+                        <span>{{pobj.age}}</span>    
+                    </div>
+                </div>
+            `
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: "父组件中内容",
+                pstr: "hello",
+                // 字符串类型
+                parr: ['apple', 'orange', 'banana'],
+
+                // 对象
+                pobj: {
+                    name: 'zahngsan',
+                    age: 13
+                }
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
