@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- 
+        props传递数据原则：单向数据流,父组件向子组件传递
+
+        解决：
+        1.子组件通过自定义事件向父组件传递信息
+
+        2.父组件监听组件的事件
+        
+     -->
+    <div id="app">
+        <div :style="{fontSize: fontSize + 'px'}">{{pmsg}}</div>
+        <menu-item :parr='parr' @enlarge-text='handle'></menu-item>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+
+        Vue.component('menu-item', {
+            props: ['pstr', 'pnum', 'pboo', 'parr', 'pobj'],
+            template: `
+                <div>
+                    <div>
+                        <ul>
+                            <li :key='index' v-for='(item, index) in parr'>{{item}}</li>    
+                        </ul>    
+                    </div>
+                    <button @click="parr.push('lemon')">点击</button>
+                    <button @click="$emit('enlarge-text')">扩大字体</button>
+                </div>
+            `
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pmsg: "父组件中内容",
+                pstr: "hello",
+                // 字符串类型
+                parr: ['apple', 'orange', 'banana'],
+
+                // 字体默认值设为12px
+                fontSize: 12
+            },
+            methods: {
+                handle: function () {
+                    // 扩大字体大小
+                    this.fontSize += 5;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
