@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <strong>get参数传递</strong>
+    <ul>
+        <li>通过url传递参数</li>
+        <li>通过params选项传递参数</li>
+    </ul>
+    <script type="text/javascript" src="../js/axios.js"></script>
+    <script type="text/javascript">
+
+        // url传递
+        // axios.get('http://localhost:3000/axios?id=123').then(function (ret) {
+        //     // 注意data属性是固定的用法，用于获取后台的实际数据
+        //     // console.log(ret.data)
+        //     console.log(ret)
+
+        //     // 打印出参数
+        //     console.log(ret.data);
+        // })
+
+        // params传递
+        // axios.get('http://localhost:3000/axios', {
+        //     params: {
+        //         id: 789
+        //     }
+        // }).then(function (ret) {
+        //     console.log(ret.data);
+        // })
+
+        // deletet
+        axios.delete('http://localhost:3000/axios', {
+            params: {
+                id: 1111
+            }
+        }).then(function (ret) {
+            console.log(ret.data);
+        })
+    </script>
+
+</body>
+
+</html>
