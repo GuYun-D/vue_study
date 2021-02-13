@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="../js/axios.js"></script>
+    <script type="text/javascript">
+
+        // 默认传递的是json格式的
+        // axios.post('http://localhost:3000/axios', {
+        //     uname: 'zhangsan',
+        //     pwd: 235
+        // }).then(function (ret) {
+        //     console.log(ret.data);
+        // })
+
+        // 传递application/x-www-form-encoded
+        // var params = new URLSearchParams();
+        // params.append("uname", "zhangsan")
+        // params.append("pwd", 7564738)
+
+        // axios.post('http://localhost:3000/axios', params).then(function (ret) {
+        //     console.log(ret.data);
+        // })
+
+        axios.put('http://localhost:3000/axios', {
+            uname: "zhangsan",
+            age: 65742
+        }).then(function (ret) {
+            console.log(ret.data);
+        })
+    </script>
+
+</body>
+
+</html>
