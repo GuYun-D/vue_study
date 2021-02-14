@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <strong>响应结果的主要属性</strong>
+        <ol>
+            <li>data: 实际响应回来的数据</li>
+            <li>headers：响应头数据</li>
+            <li>status: 响应状态码</li>
+            <li>statusText：响应状态信息</li>
+        </ol>
+    </div>
+
+    <script src="../js/axios.js"></script>
+    <script>
+        axios.get('http://localhost:3000/axios').then(function (ret) {
+            console.log(ret);
+        })
+
+        axios.get('http://localhost:3000/axios-json').then(function (ret) {
+            console.log(ret);
+            console.log(ret.data.uname);
+        })
+    </script>
+</body>
+
+</html>
