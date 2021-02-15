@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+    <strong>命名路由的配置规则：为了更加方便的表示路由的路径，可以给路由规则起一个别名，即为，命名路由</strong>
+    <div id="app">
+
+        <router-link to="/user/1">User</router-link>
+        <router-link to="/user/2">User</router-link>
+
+        <!-- 命名路由是先跳转 -->
+        <router-link :to="{name: 'user', params: {id: 3}}">User</router-link>
+
+        <router-link to="/register">Register</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const User = {
+            props: ["id", "uname", "age"],
+            template: '<div>组件1 ---- 用户id为{{id}},{{uname}},{{age}}</div>'
+        }
+
+        const Register = {
+            template: '<div>组件2</div>'
+        }
+
+        const router = new VueRouter({
+            // 所有路由规则
+            routes: [
+                { path: "/", redirect: "/user" },
+
+                // 动态路由参数，以冒号开头，获取路由参数，在对应组件中获取
+                // 命名路由
+                {
+                    //为路由命名
+                    name: "user",
+                    path: "/user/:id", component: User, props: route => ({
+                        uname: "zhangsan",
+                        id: route.params.id,
+                        age: 34
+                    })
+                },
+                { path: "/register", component: Register }
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+
+            router
+        });
+    </script>
+</body>
+
+</html>
