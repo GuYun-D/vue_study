@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+    <div style="font-size: 20px;">
+        <ul>
+            <li>点击父级路由链接显示模板内容</li>
+            <li>模板中又有子级路由链接</li>
+            <li>点击子级路由链接显示子级模板内容</li>
+        </ul>
+    </div>
+    <div id="app">
+        <router-link to="/user">User</router-link>
+        <router-link to="/register">Register</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const User = {
+            template: '<div>组件1</div>'
+        }
+
+        const Register = {
+            template: `<div>
+                <h1>登录模板</h1>
+                <br />
+
+                <!-- 子路由链接 -->
+                <router-link to="/register/tab1">tab1</router-link>
+                <router-link to="/register/tab2">tab2</router-link>
+
+                <!-- 子路由的占位符 -->
+                <router-view />
+            </div>`
+        }
+
+        // 创建子组件
+        const Tab1 = {
+            template: '<h3>tab1</h3>'
+        }
+
+        const Tab2 = {
+            template: '<h3>tab2</h3>'
+        }
+
+        /*
+            路由重定向：用户在访问地址A的时候，强制跳转到C，从而展示特定的组件页面。
+            通过路由规则的redirect属性，指定一个新的路由地址，方便设置重定向
+        */
+        const router = new VueRouter({
+            // 所有路由规则
+            routes: [
+                { path: "/", redirect: "/user" },
+                { path: "/user", component: User },
+
+                // 设置子路由规则
+                // children: 数组表示子路由规则
+                {
+                    path: "/register", component: Register,
+                    children: [
+                        { path: "/register/tab1", component: Tab1 },
+                        { path: "/register/tab2", component: Tab2 }
+                    ]
+                }
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+
+            router
+        });
+    </script>
+</body>
+
+</html>
