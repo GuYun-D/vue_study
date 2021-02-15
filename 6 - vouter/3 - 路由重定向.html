@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <router-link to="/user">User</router-link>
+        <router-link to="/register">Register</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const User = {
+            template: '<div>组件1</div>'
+        }
+
+        const Register = {
+            template: '<div>组件2</div>'
+        }
+
+        /*
+            路由重定向：用户在访问地址A的时候，强制跳转到C，从而展示特定的组件页面。
+            通过路由规则的redirect属性，指定一个新的路由地址，方便设置重定向
+        */
+        const router = new VueRouter({
+            // 所有路由规则
+            routes: [
+                {path: "/", redirect: "/user"},
+                { path: "/user", component: User },
+                { path: "/register", component: Register }
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+
+            router
+        });
+    </script>
+</body>
+
+</html>
