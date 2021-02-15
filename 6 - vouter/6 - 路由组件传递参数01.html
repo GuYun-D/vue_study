@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+    
+    <mark>前面通过$route的方式获取路由参数的方式与对应路由形成高度耦合，不够灵活，所以可以使用props将组件和路由解耦</mark> 
+    <strong>传递单个值</strong>
+    <div id="app">
+
+        <router-link to="/user/1">User</router-link>
+        <router-link to="/user/2">User</router-link>
+        <router-link to="/user/3">User</router-link>
+        <router-link to="/register">Register</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const User = {
+            props: ["uid"],
+            template: '<div>组件1 ---- 用户id为{{uid}}</div>'
+        }
+
+        const Register = {
+            template: '<div>组件2</div>'
+        }
+
+        const router = new VueRouter({
+            // 所有路由规则
+            routes: [
+                { path: "/", redirect: "/user" },
+
+                // 动态路由参数，以冒号开头，获取路由参数，在对应组件中获取
+                { path: "/user/:uid", component: User, props: true},
+                { path: "/register", component: Register }
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+
+            router
+        });
+    </script>
+</body>
+
+</html>
