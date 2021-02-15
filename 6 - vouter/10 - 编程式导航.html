@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+    <h5>编程式导航</h5>
+    <ul>
+        <li>
+            <h6>声明式导航</h6><mark>通过点击链接实现导航的方式，叫做声明式导航</mark>
+            <p>如：普通网页中的a链接，vue中的router-link</p>
+        </li>
+
+        <li>
+            <h6>编程式导航</h6><mark>通过调用js形式的api实现导航的方式</mark>
+            <p>如：普通网页中的location.href</p>
+            <div>
+                <strong>常用的编程式导航api</strong>
+                <ul>
+                    <li>
+                        this.$router.push('hash地址')
+                        <ul>
+                            <li>
+                                // 字符串（路径名称）
+                                router.push('/home')
+                            </li>
+                            <li>
+                                // 对象
+                                router.push({path: "/home"})
+                            </li>
+                            <li>
+                                // 命名路由
+                                router.push({name: "/user", params: {uid: 2}})
+                            </li>
+                            <li>
+                                // 带查询参数，变成/register？uname=list
+                                router.push({path: 'register', query: {uname: "list"}})
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        this.$router.go(n)
+                        1:前进
+                        -1：后退
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <hr>
+
+    <div id="app">
+
+        <router-link to="/user/1">User</router-link>
+        <router-link to="/user/2">User</router-link>
+
+        <!-- 命名路由是先跳转 -->
+        <router-link :to="{name: 'user', params: {id: 3}}">User</router-link>
+
+        <router-link to="/register">Register</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const User = {
+            props: ["id", "uname", "age"],
+            template: `<div>
+                <div>组件1 ---- 用户id为{{id}},{{uname}},{{age}}</div>
+                <button @click="goRegis">跳转到注册页面</button>  
+            </div>`,
+            methods: {
+                goRegis: function () {
+                    this.$router.push("/register")
+                }
+            }
+        }
+
+        const Register = {
+            template: `<div>
+                <div>组件2</div>
+                <button @click="goBack">后退</button>  
+            </div>`,
+            methods: {
+                goBack: function () {
+                    this.$router.go(-1)
+                }
+            }
+        }
+
+        const router = new VueRouter({
+            // 所有路由规则
+            routes: [
+                { path: "/", redirect: "/user" },
+
+                // 动态路由参数，以冒号开头，获取路由参数，在对应组件中获取
+                // 命名路由
+                {
+                    //为路由命名
+                    name: "user",
+                    path: "/user/:id", component: User, props: route => ({
+                        uname: "zhangsan",
+                        id: route.params.id,
+                        age: 34
+                    })
+                },
+                { path: "/register", component: Register }
+            ]
+        })
+
+
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+
+            router
+        });
+    </script>
+</body>
+
+</html>
