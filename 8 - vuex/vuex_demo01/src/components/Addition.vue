@@ -6,6 +6,7 @@
     <h3>当前最新的count值为：{{ $store.state.count }}</h3>
     <button @click="btnHandler1">+1</button>
     <button @click="btnHandler2">+5</button>
+    <button @click="btnHandler3">+1 async</button>
   </div>
 </template>
 
@@ -31,9 +32,15 @@ export default {
       this.$store.commit('add')
     },
 
-    btnHandler2(){
+    btnHandler2() {
       this.$store.commit('addN', 5)
-    }
+    },
+
+    // 异步加一
+    btnHandler3() {
+      // dispatch触发action函数
+      this.$store.dispatch('addAsync')
+    },
   },
 }
 </script>
