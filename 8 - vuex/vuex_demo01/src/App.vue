@@ -11,7 +11,7 @@ import Subtraction from './components/Subtraction.vue'
 export default {
   data() {
     return {
-      count: 0
+      
     }
   },
 
