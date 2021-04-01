@@ -1,9 +1,12 @@
 <template>
   <div>
     <h3>当前最新的count值为：{{ count }}</h3>
-    <button @click="btnHandler1">-1</button>
+    <!-- <button @click="btnHandler1">-1</button>
     <button @click="btnHandler2">-5</button>
-    <button @click="btnHandler3">-1 async</button>
+    <button @click="btnHandler3">-1 async</button> -->
+    <button @click="sub">-1</button>
+    <button @click="sub(5)">-5</button>
+    <button @click="subAsync">-1 async</button>
     <!-- 
         访问state数据的第二种方式 
         从vuex中按需导入mapState函数
@@ -26,17 +29,17 @@ export default {
     // ...mapMutations(['sub']),
     ...mapMutations(['sub', 'subN']),
     ...mapActions(['subAsync']),
-    btnHandler1() {
-      this.sub()
-    },
+    // btnHandler1() {
+    //   this.sub()
+    // },
 
-    btnHandler2() {
-      this.subN(5)
-    },
+    // btnHandler2() {
+    //   this.subN(5)
+    // },
 
-    btnHandler3() {
-      this.subAsync()
-    },
+    // btnHandler3() {
+    //   this.subAsync()
+    // },
   },
 
   computed: {
