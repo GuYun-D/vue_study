@@ -47,6 +47,15 @@ export default new Vuex.Store({
                  */
                 context.commit("add")
             }, 1000);
+        },
+
+        addAsync(context, step) {
+            setTimeout(() => {
+                /**
+                 * action同样不能直接修改state
+                 */
+                context.commit("addN", step)
+            }, 1000);
         }
     }
 })

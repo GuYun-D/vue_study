@@ -7,6 +7,7 @@
     <button @click="btnHandler1">+1</button>
     <button @click="btnHandler2">+5</button>
     <button @click="btnHandler3">+1 async</button>
+    <button @click="btnHandler4">+5 async</button>
   </div>
 </template>
 
@@ -40,6 +41,11 @@ export default {
     btnHandler3() {
       // dispatch触发action函数
       this.$store.dispatch('addAsync')
+    },
+
+    // 异步加n
+    btnHandler4() {
+      this.$store.dispatch("addAsync", 5)
     },
   },
 }
