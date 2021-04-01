@@ -7,6 +7,7 @@
     <button @click="sub">-1</button>
     <button @click="sub(5)">-5</button>
     <button @click="subAsync">-1 async</button>
+    <button @click="subNAsync(5)">-5 async</button>
     <!-- 
         访问state数据的第二种方式 
         从vuex中按需导入mapState函数
@@ -28,7 +29,7 @@ export default {
      */
     // ...mapMutations(['sub']),
     ...mapMutations(['sub', 'subN']),
-    ...mapActions(['subAsync']),
+    ...mapActions(['subAsync', 'subNAsync']),
     // btnHandler1() {
     //   this.sub()
     // },
