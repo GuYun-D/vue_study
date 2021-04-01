@@ -56,6 +56,12 @@ export default new Vuex.Store({
                  */
                 context.commit("addN", step)
             }, 1000);
+        },
+
+        subAsync(context){
+            setTimeout(() => {
+                context.commit('sub')
+            }, 1000);
         }
     }
 })
