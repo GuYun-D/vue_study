@@ -5,6 +5,7 @@
     <!-- 访问state数据的第一种方式 -->
     <h3>当前最新的count值为：{{ $store.state.count }}</h3>
     <button @click="btnHandler1">+1</button>
+    <button @click="btnHandler2">+5</button>
   </div>
 </template>
 
@@ -20,7 +21,7 @@ export default {
        * 这样做虽然可以达到我们的目的，但是这样是错误的，vuex不允许组件直接修改state中的数据
        */
       // this.$store.state.count ++
-      console.log('错误修改')
+      // console.log('错误修改')
       /**
        * 触发mutations函数
        * Mutation 用于变更 Store中 的数据。
@@ -29,6 +30,10 @@ export default {
        */
       this.$store.commit('add')
     },
+
+    btnHandler2(){
+      this.$store.commit('addN', 5)
+    }
   },
 }
 </script>

@@ -11,6 +11,10 @@ export default new Vuex.Store({
     mutations: {
         add(state) {
             state.count++
+        },
+
+        addN(state, step){
+            state.count += step
         }
     },
 
