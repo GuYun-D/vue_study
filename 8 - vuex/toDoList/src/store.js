@@ -9,7 +9,11 @@ export default new Vuex.Store({
         // 所有的任务列表
         list: [],
         // 文本框的内容
-        inputValue: "aaa"
+        inputValue: "aaa",
+        /**
+         * 纯前端项目，id只能自己生成
+         */
+        nextId: 5
     },
 
     mutations: {
@@ -19,8 +23,24 @@ export default new Vuex.Store({
         },
 
         // 为store中的inputValue赋值
-        setInputValue(state, val){
+        setInputValue(state, val) {
             state.inputValue = val
+        },
+
+        // 添加列表项
+        addItem(state) {
+            const obj = {
+                id: state.nextId,
+                info: state.inputValue.trim(),
+                done: false
+            }
+
+            state.list.push(obj)
+
+            state.nextId++
+
+            state.inputValue = ''
+
         }
     },
 
