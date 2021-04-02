@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <a-input placeholder="请输入任务" class="my_ipt" />
+    <a-input placeholder="请输入任务" class="my_ipt" :value="inputValue" @change="handleInputChange" />
     <a-button type="primary">添加事项</a-button>
 
     <a-list bordered :dataSource="list" class="dt_list">
@@ -44,7 +44,16 @@ export default {
   },
 
   computed: {
-    ...mapState(["list"])
+    ...mapState(["list", "inputValue"])
+  },
+
+  methods: {
+    // 监听文本框内容变化
+    handleInputChange(e){
+      console.log(e.target.value);
+      // 当文本变化，将变化后的值赋给vuex
+      this.$store.commit("setInputValue", e.target.value)
+    }
   }
 }
 </script>
