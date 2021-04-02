@@ -13,7 +13,7 @@
         <!-- 复选框 -->
         <a-checkbox>{{ item.info }}</a-checkbox>
         <!-- 删除链接 -->
-        <a slot="actions">删除</a>
+        <a slot="actions" @click="removeItemById(item.id)">删除</a>
       </a-list-item>
 
       <!-- footer区域 -->
@@ -66,6 +66,12 @@ export default {
 
       this.$store.commit('addItem')
     },
+
+    // 删除对应项
+    removeItemById(id){
+      // console.log(id);
+      this.$store.commit('removeItem', id)
+    }
   },
 }
 </script>

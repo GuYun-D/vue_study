@@ -41,6 +41,22 @@ export default new Vuex.Store({
 
             state.inputValue = ''
 
+        },
+
+        // 根据id删除对应的item项
+        removeItem(state, id) {
+            console.log("传进来的id是" + id + typeof id);
+
+            // 根据id查找对应索引
+            const i = state.list.findIndex(x => {
+               x.id === id
+            })
+
+            console.log(i);
+            // 根据索引删除对象
+            if (i !== -1) {
+                state.list.splice(i, 1)
+            }
         }
     },
 
