@@ -71,7 +71,18 @@ var _default = new _vuex["default"].Store({
     setTimeout(function () {
       context.commit('subN', step);
     }, 1000);
-  }), _actions)
+  }), _actions),
+
+  /**
+   * Getter 用于对 Store 中的数据进行加工处理形成新的数据。
+   *      ① Getter 可以对 Store 中已有的数据加工处理之后形成新的数据，类似 Vue 的计算属性。
+   *      ② Store 中数据发生变化，Getter 的数据也会跟着变化
+   */
+  getters: {
+    showNum: function showNum(state) {
+      return "当前最新的count的值为【" + state.count + "】";
+    }
+  }
 });
 
 exports["default"] = _default;
