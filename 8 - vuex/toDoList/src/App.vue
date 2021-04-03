@@ -27,7 +27,7 @@
       <!-- footer区域 -->
       <div slot="footer" class="footer">
         <!-- 未完成的任务个数 -->
-        <span> unDoneLength 条未完成</span>
+        <span> {{unDoneLength}} 条未完成</span>
         <!-- 操作按钮 -->
         <a-button-group>
           <a-button
@@ -45,7 +45,7 @@
             @click="changeList('done')"
             >已完成</a-button
           > </a-button-group
-        >()
+        >
         <!-- 把已经完成的任务清空 -->
         <a @click="clean">清除已完成</a>
       </div>
