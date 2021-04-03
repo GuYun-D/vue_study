@@ -8,7 +8,7 @@
     />
     <a-button type="primary" @click="addItemToList">添加事项</a-button>
 
-    <a-list bordered :dataSource="list" class="dt_list">
+    <a-list bordered :dataSource="infolist" class="dt_list">
       <a-list-item slot="renderItem" slot-scope="item">
         <!-- 复选框 -->
         <a-checkbox
@@ -67,8 +67,9 @@ export default {
   },
 
   computed: {
-    ...mapState(['list', 'inputValue', 'viewKey']),
-    ...mapGetters(['unDoneLength']),
+    // ...mapState(['list', 'inputValue', 'viewKey']),
+    ...mapState(['inputValue', 'viewKey']),
+    ...mapGetters(['unDoneLength', 'infolist']),
   },
 
   methods: {

@@ -9,7 +9,7 @@ export default new Vuex.Store({
         // 所有的任务列表
         list: [],
         // 文本框的内容
-        inputValue: "aaa",
+        inputValue: "",
         /**
          * 纯前端项目，id只能自己生成
          */
@@ -73,7 +73,7 @@ export default new Vuex.Store({
         },
 
         // 修改视图关键字
-        changeViewKey(stae, key){
+        changeViewKey(stae, key) {
             stae.viewKey = key
         }
 
@@ -92,6 +92,27 @@ export default new Vuex.Store({
     getters: {
         unDoneLength(state) {
             return state.list.filter(x => x.done === false).length
+        },
+
+        infolist(state) {
+            if (state.viewKey === "all") {
+                return state.list
+            }
+
+            if (state.viewKey === "undone") {
+                return state.list.filter(
+                    x => !x.done
+                )
+            }
+
+            if (state.viewKey === "done") {
+                console.log("传进来的是done");
+                return state.list.filter(
+                    x => x.done
+                )
+            }
+
+            return state.list
         }
     }
 })
