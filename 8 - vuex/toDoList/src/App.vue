@@ -11,7 +11,15 @@
     <a-list bordered :dataSource="list" class="dt_list">
       <a-list-item slot="renderItem" slot-scope="item">
         <!-- 复选框 -->
-        <a-checkbox :checked="item.done" @change="(e) => {cbstatusChange(e, item.id)}">{{ item.info }}</a-checkbox>
+        <a-checkbox
+          :checked="item.done"
+          @change="
+            (e) => {
+              cbstatusChange(e, item.id)
+            }
+          "
+          >{{ item.info }}</a-checkbox
+        >
         <!-- 删除链接 -->
         <a slot="actions" @click="removeItemById(item.id)">删除</a>
       </a-list-item>
@@ -19,7 +27,7 @@
       <!-- footer区域 -->
       <div slot="footer" class="footer">
         <!-- 未完成的任务个数 -->
-        <span>0条剩余</span>
+        <span>{{ unDoneLength }}条未完成</span>
         <!-- 操作按钮 -->
         <a-button-group>
           <a-button type="primary">全部</a-button>
@@ -34,7 +42,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
@@ -48,6 +56,7 @@ export default {
 
   computed: {
     ...mapState(['list', 'inputValue']),
+    ...mapGetters(['unDoneLength']),
   },
 
   methods: {
@@ -68,24 +77,23 @@ export default {
     },
 
     // 删除对应项
-    removeItemById(id){
+    removeItemById(id) {
       // console.log(id);
       this.$store.commit('removeItem', id)
     },
 
     // 复选框状态发生改变触发
-    cbstatusChange(e, id){
+    cbstatusChange(e, id) {
       // 获取选中状态
       // console.log(e.target.checked);
       // console.log(id);
       const param = {
         id: id,
-        status: e.target.checked
+        status: e.target.checked,
       }
 
       this.$store.commit('changeStatus', param)
-
-    }
+    },
   },
 }
 </script>
