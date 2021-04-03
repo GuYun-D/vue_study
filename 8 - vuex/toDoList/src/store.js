@@ -13,7 +13,9 @@ export default new Vuex.Store({
         /**
          * 纯前端项目，id只能自己生成
          */
-        nextId: 5
+        nextId: 5,
+        // 控制过滤
+        viewKey: 'all'
     },
 
     mutations: {
@@ -58,16 +60,21 @@ export default new Vuex.Store({
         },
 
         // 修改列表的选中状态
-        changeStatus(state, param){
+        changeStatus(state, param) {
             const i = state.list.findIndex(x => x.id === param.id)
-            if(i !== -1){
+            if (i !== -1) {
                 state.list[i].done = param.status
             }
         },
 
         // 清除已完成
-        cleanDone(state){
+        cleanDone(state) {
             state.list = state.list.filter(x => x.done === false)
+        },
+
+        // 修改视图关键字
+        changeViewKey(stae, key){
+            stae.viewKey = key
         }
 
     },
@@ -83,7 +90,7 @@ export default new Vuex.Store({
     },
 
     getters: {
-        unDoneLength(state){
+        unDoneLength(state) {
             return state.list.filter(x => x.done === false).length
         }
     }

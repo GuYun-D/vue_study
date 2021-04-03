@@ -27,13 +27,25 @@
       <!-- footer区域 -->
       <div slot="footer" class="footer">
         <!-- 未完成的任务个数 -->
-        <span>{{ unDoneLength }}条未完成</span>
+        <span> unDoneLength 条未完成</span>
         <!-- 操作按钮 -->
         <a-button-group>
-          <a-button type="primary">全部</a-button>
-          <a-button>未完成</a-button>
-          <a-button>已完成</a-button>
-        </a-button-group>
+          <a-button
+            :type="viewKey === 'all' ? 'primary' : 'default'"
+            @click="changeList('all')"
+            >全部</a-button
+          >
+          <a-button
+            :type="viewKey === 'undone' ? 'primary' : 'default'"
+            @click="changeList('undone')"
+            >未完成</a-button
+          >
+          <a-button
+            :type="viewKey === 'done' ? 'primary' : 'default'"
+            @click="changeList('done')"
+            >已完成</a-button
+          > </a-button-group
+        >()
         <!-- 把已经完成的任务清空 -->
         <a @click="clean">清除已完成</a>
       </div>
@@ -55,7 +67,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['list', 'inputValue']),
+    ...mapState(['list', 'inputValue', 'viewKey']),
     ...mapGetters(['unDoneLength']),
   },
 
@@ -95,9 +107,15 @@ export default {
       this.$store.commit('changeStatus', param)
     },
 
-    //
+    // 清除已完成
     clean() {
       this.$store.commit('cleanDone')
+    },
+
+    // 切换列表
+    changeList(key) {
+      // console.log(key);
+      this.$store.commit('changeViewKey', key)
     },
   },
 }
